@@ -5,14 +5,11 @@ High-performance data processing library powered by WebAssembly. Process million
 ## Overview
 ![Demo](sample.gif)
 
-## Para complementar la demostración visual
+## To complement the visual demonstration
 
-aquí tienes un resultado de rendimiento concreto: en una prueba real de carga y ordenación de un archivo 
-## CSV con 2 millones de registros, 
-## VeloCompute completó la operación en 474.30 ms, 
-mientras que la implementación nativa de 
-## JavaScript requirió 2224.93 ms.
-Esto representa una mejora del 78.7% y un procesamiento 4.69 veces más rápido, validando su eficacia con volúmenes masivos de datos en un escenario práctico.
+Here's a concrete performance result: In a real-world test loading and sorting a CSV file with 2 million records, VeloCompute completed the operation in 474.30 ms, while the native JavaScript implementation required 2224.93 ms.
+
+This represents a 78.7% improvement and 4.69 times faster processing, validating its effectiveness with massive data volumes in a practical scenario.
 
 VeloCompute is a TypeScript-first data processing library that leverages WebAssembly to deliver exceptional performance for operations on large datasets. Built with Rust and optimized for modern JavaScript environments, it provides a simple API while achieving speedups of 10-20x over native JavaScript implementations.
 
