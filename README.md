@@ -639,6 +639,277 @@ A: Full TypeScript support with complete type definitions included.
 
 ---
 
+## 🔄 Using VeloCompute with Pagination
+
+VeloCompute doesn't have built-in pagination, but it works perfectly for **processing data before paginating**.
+
+### Recommended Pattern
+
+**1. Process with VeloCompute (ultra-fast)**
+```javascript
+import { VeloData } from 'velo-compute';
+
+// Raw data
+const rawData = [...]; // 2 million records
+
+// Process with VeloCompute
+const amounts = new Float64Array(rawData.map(r => r.amount));
+await VeloData.sortTypedArray(amounts, true);
+const indices = await VeloData.filterIndices(amounts, 5000, 'gt');
+const processedData = indices.map(i => rawData[i]);
+```
+
+**2. Paginate with JavaScript (instant)**
+```javascript
+function paginate(array, page, pageSize = 100) {
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  
+  return {
+    data: array.slice(start, end),
+    pagination: {
+      page: page,
+      pageSize: pageSize,
+      total: array.length,
+      totalPages: Math.ceil(array.length / pageSize),
+      hasNext: end < array.length,
+      hasPrev: page > 1
+    }
+  };
+}
+
+// Use it
+const page1 = paginate(processedData, 1, 100);
+const page2 = paginate(processedData, 2, 100);
+```
+
+### Complete Example: Paginator Class
+
+```javascript
+class VeloDataPaginator {
+  constructor(pageSize = 100) {
+    this.data = [];
+    this.currentPage = 1;
+    this.pageSize = pageSize;
+  }
+  
+  async loadAndProcess(rawData, options = {}) {
+    console.time('VeloCompute Processing');
+    
+    // Convert to TypedArray
+    const amounts = new Float64Array(rawData.map(r => r.amount));
+    
+    // Sort if needed
+    if (options.sort) {
+      await VeloData.sortTypedArray(amounts, options.ascending || true);
+    }
+    
+    // Filter if condition exists
+    if (options.filterValue) {
+      const indices = await VeloData.filterIndices(
+        amounts, 
+        options.filterValue, 
+        options.filterOperator || 'gt'
+      );
+      this.data = indices.map(i => rawData[i]);
+    } else {
+      this.data = rawData;
+    }
+    
+    console.timeEnd('VeloCompute Processing');
+    
+    return this.getPage(1);
+  }
+  
+  getPage(pageNumber) {
+    this.currentPage = pageNumber;
+    const start = (pageNumber - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    
+    return {
+      data: this.data.slice(start, end),
+      pagination: {
+        page: pageNumber,
+        pageSize: this.pageSize,
+        total: this.data.length,
+        totalPages: Math.ceil(this.data.length / this.pageSize),
+        hasNext: end < this.data.length,
+        hasPrev: pageNumber > 1
+      }
+    };
+  }
+  
+  nextPage() {
+    const totalPages = Math.ceil(this.data.length / this.pageSize);
+    if (this.currentPage < totalPages) {
+      return this.getPage(this.currentPage + 1);
+    }
+    return null;
+  }
+  
+  prevPage() {
+    if (this.currentPage > 1) {
+      return this.getPage(this.currentPage - 1);
+    }
+    return null;
+  }
+  
+  goToPage(page) {
+    const totalPages = Math.ceil(this.data.length / this.pageSize);
+    if (page >= 1 && page <= totalPages) {
+      return this.getPage(page);
+    }
+    return null;
+  }
+}
+
+// Usage
+const paginator = new VeloDataPaginator(100);
+
+// Load and process data
+const result = await paginator.loadAndProcess(rawData, {
+  sort: true,
+  ascending: true,
+  filterValue: 5000,
+  filterOperator: 'gt'
+});
+
+console.log(result);
+// {
+//   data: [100 items from page 1],
+//   pagination: {
+//     page: 1,
+//     pageSize: 100,
+//     total: 500000,
+//     totalPages: 5000,
+//     hasNext: true,
+//     hasPrev: false
+//   }
+// }
+
+// Navigate
+const page2 = paginator.nextPage();
+const page10 = paginator.goToPage(10);
+const page1 = paginator.prevPage();
+```
+
+### Pagination Strategies
+
+#### 1. Process All, Paginate After (Recommended)
+Best for medium datasets (< 10M records).
+
+```javascript
+// Process once
+const sorted = await VeloData.sort(largeDataset);
+
+// Paginate multiple times (instant)
+const page1 = sorted.slice(0, 100);
+const page2 = sorted.slice(100, 200);
+```
+
+**Benefits:**
+- Process only once
+- Instant pagination (<1ms)
+- Smooth navigation
+
+#### 2. Batch Processing
+Best for huge datasets (> 10M records).
+
+```javascript
+async function processBatches(dataset, batchSize = 1_000_000) {
+  const results = [];
+  
+  for (let i = 0; i < dataset.length; i += batchSize) {
+    const batch = dataset.slice(i, i + batchSize);
+    const processed = await VeloData.sort(batch);
+    results.push(...processed);
+  }
+  
+  return results;
+}
+```
+
+#### 3. Server-Side Pagination
+Best for web applications with backend.
+
+```javascript
+// Backend (Node.js)
+app.get('/api/data', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 100;
+  
+  // Get and process data
+  const allData = await getData();
+  const sorted = await VeloData.sort(allData);
+  
+  // Paginate
+  const start = (page - 1) * pageSize;
+  const pageData = sorted.slice(start, start + pageSize);
+  
+  res.json({
+    data: pageData,
+    page,
+    total: sorted.length,
+    totalPages: Math.ceil(sorted.length / pageSize)
+  });
+});
+```
+
+#### 4. Infinite Scroll / Virtual Scrolling
+Best for UI with infinite scroll.
+
+```javascript
+class VirtualScroller {
+  constructor(data, itemHeight, containerHeight) {
+    this.data = data;
+    this.itemHeight = itemHeight;
+    this.visibleItems = Math.ceil(containerHeight / itemHeight);
+  }
+  
+  getVisibleItems(scrollTop) {
+    const startIndex = Math.floor(scrollTop / this.itemHeight);
+    const endIndex = startIndex + this.visibleItems + 1;
+    
+    return {
+      items: this.data.slice(startIndex, endIndex),
+      startIndex,
+      endIndex
+    };
+  }
+}
+
+// Usage
+const sorted = await VeloData.sort(millionsOfRecords);
+const scroller = new VirtualScroller(sorted, 50, 600);
+
+container.addEventListener('scroll', (e) => {
+  const visible = scroller.getVisibleItems(e.target.scrollTop);
+  renderItems(visible.items);
+});
+```
+
+### Performance: VeloCompute + Pagination
+
+With 2 million records:
+
+| Operation | Time |
+|-----------|------|
+| VeloCompute sort | ~60ms |
+| VeloCompute filter | ~40ms |
+| JavaScript slice (paginate) | <1ms |
+| **Total** | **~100ms** |
+
+**Conclusion:** 99% of the time is processing (VeloCompute), pagination is instant.
+
+### Summary
+
+**VeloCompute + Pagination = Perfect Combination**
+
+1. **VeloCompute** processes millions of records in ~100ms
+2. **JavaScript slice** paginates results in <1ms
+3. **Result:** Ultra-fast and smooth experience
+
+---
+
 **Version:** 1.0.0  
 **Status:** Stable
-# VeloCompute
