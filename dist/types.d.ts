@@ -1,0 +1,58 @@
+export interface SortOptions<T> {
+    by?: (item: T) => number | string;
+    order?: 'asc' | 'desc';
+    inPlace?: boolean;
+}
+export type TypedArrayType = Int32Array | Float64Array | Uint32Array;
+export interface WasmModule {
+    sort_i32(data: Int32Array, ascending: boolean): void;
+    sort_f64(data: Float64Array, ascending: boolean): void;
+    sort_u32(data: Uint32Array, ascending: boolean): void;
+    sort_by_key_i32(data: Int32Array, keys: Int32Array, ascending: boolean): void;
+    sort_by_key_f64(data: Float64Array, keys: Float64Array, ascending: boolean): void;
+    FilterContext: any;
+    filter_f64_range(data: Float64Array, min: number, max: number): Float64Array;
+    filter_f64_compare(data: Float64Array, threshold: number, operation: string): Float64Array;
+    filter_u32_compare(data: Uint32Array, threshold: number, operation: string): Uint32Array;
+    GroupByResult: any;
+    GroupByAggregate: any;
+    groupby_sum_i32(keys: Int32Array, values: Float64Array): Float64Array;
+    groupby_count_i32(keys: Int32Array): Int32Array;
+    UniqueContext: any;
+    unique_u32(data: Uint32Array): Uint32Array;
+    unique_f64(data: Float64Array): Float64Array;
+    unique_f64_with_counts(data: Float64Array): Float64Array;
+    count_unique_i32(data: Int32Array): number;
+    count_unique_f64(data: Float64Array): number;
+    unique_i32_adaptive(data: Int32Array): Int32Array;
+    aggregate_f64(data: Float64Array): any;
+    aggregate_i32(data: Int32Array): any;
+    sum_f64(data: Float64Array): number;
+    sum_i32(data: Int32Array): number;
+    mean_f64(data: Float64Array): number;
+    mean_i32(data: Int32Array): number;
+    min_f64(data: Float64Array): number;
+    max_f64(data: Float64Array): number;
+    min_i32(data: Int32Array): number;
+    max_i32(data: Int32Array): number;
+    weighted_mean(values: Float64Array, weights: Float64Array): number;
+    percentile_f64(data: Float64Array, p: number): number;
+    median_f64(data: Float64Array): number;
+    quartiles_f64(data: Float64Array): any;
+    filter_i32_gt_power2(data: Int32Array, threshold_log2: number): Int32Array;
+    filter_i32_gt_counting(data: Int32Array, threshold: number): Int32Array;
+    sum_f64_kahan(data: Float64Array): number;
+    aggregate_f64_hyper(data: Float64Array): Float64Array;
+    HashJoin: any;
+    JoinType: any;
+    JoinResult: any;
+    SortMergeJoin: any;
+    nested_loop_join_i32(left: Int32Array, right: Int32Array): any;
+    semi_join_i32(left: Int32Array, right: Int32Array): Uint32Array;
+    anti_join_i32(left: Int32Array, right: Int32Array): Uint32Array;
+    PivotTable: any;
+    WindowContext: any;
+    StreamProcessor: any;
+    StreamAggregator: any;
+    StreamFilter: any;
+}
