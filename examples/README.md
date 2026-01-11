@@ -1,221 +1,254 @@
+Aquí tienes la **traducción completa al inglés** del README que enviaste, manteniendo estructura, formato y sentido técnico:
+
+---
+
 # VeloCompute Examples
 
-Esta carpeta contiene ejemplos completos y funcionales de casos de uso reales con VeloCompute.
+This folder contains complete and fully functional examples of real-world use cases with VeloCompute.
 
-## Ejemplos Disponibles
+## Available Examples
 
 ### 1. Zero-Copy Performance Demo
-**Archivo:** `zero-copy-performance.js`  
-**Tamaño del Dataset:** 10M elementos  
-**Tiempo de Ejecucion:** ~2 segundos
 
-Demuestra las APIs zero-copy de VeloCompute:
-- `sortTypedArray()` - Sort in-place
-- `filterIndices()` - Filter retornando indices
-- `aggregateTypedArray()` - Estadisticas single-pass
-- Pipeline completo de transacciones financieras
+**File:** `zero-copy-performance.js`
+**Dataset Size:** 10M elements
+**Execution Time:** ~2 seconds
 
-**Ejecutar:**
+Demonstrates VeloCompute zero-copy APIs:
+
+* `sortTypedArray()` – In-place sorting
+* `filterIndices()` – Filter returning indices
+* `aggregateTypedArray()` – Single-pass statistics
+* Complete financial transaction pipeline
+
+**Run:**
+
 ```bash
 node examples/zero-copy-performance.js
 ```
 
-**Aprende:**
-- Como usar TypedArrays para maximo performance
-- Diferencia entre APIs tradicionales y zero-copy
-- Speedups de 6-20x sobre JavaScript nativo
+**Learn:**
+
+* How to use TypedArrays for maximum performance
+* Difference between traditional APIs and zero-copy
+* 6–20x speedups over native JavaScript
 
 ---
 
 ### 2. Financial Dashboard
-**Archivo:** `financial-dashboard.js`  
-**Tamaño del Dataset:** 5M transacciones  
-**Tiempo de Ejecucion:** ~1.5 segundos
 
-Dashboard financiero en tiempo real con:
-- Top 10 transacciones mas grandes
-- Estadisticas por categoria (groceries, rent, etc.)
-- Deteccion de anomalias (transacciones > $5000)
-- Tendencia mensual (ingresos vs gastos)
-- Top merchants por volumen
+**File:** `financial-dashboard.js`
+**Dataset Size:** 5M transactions
+**Execution Time:** ~1.5 seconds
 
-**Ejecutar:**
+Real-time financial dashboard with:
+
+* Top 10 largest transactions
+* Statistics by category (groceries, rent, etc.)
+* Anomaly detection (transactions > $5000)
+* Monthly trend (income vs expenses)
+* Top merchants by volume
+
+**Run:**
+
 ```bash
 node examples/financial-dashboard.js
 ```
 
-**Aprende:**
-- Analisis de transacciones financieras
-- Deteccion de anomalias
-- Agregaciones por multiples dimensiones
-- Comparacion de periodos temporales
+**Learn:**
+
+* Financial transaction analysis
+* Anomaly detection
+* Multi-dimensional aggregations
+* Time period comparison
 
 ---
 
 ### 3. Log Analysis
-**Archivo:** `log-analysis.js`  
-**Tamaño del Dataset:** 10M entradas de log  
-**Tiempo de Ejecucion:** ~2 segundos
 
-Analisis de logs de servidor:
-- Distribucion de severidad (DEBUG, INFO, WARN, ERROR, FATAL)
-- Endpoints mas lentos (response times)
-- Errores criticos por servicio
-- Distribucion de HTTP status codes
-- P99 requests mas lentas
-- Patrones de errores comunes
+**File:** `log-analysis.js`
+**Dataset Size:** 10M log entries
+**Execution Time:** ~2 seconds
 
-**Ejecutar:**
+Server log analysis:
+
+* Severity distribution (DEBUG, INFO, WARN, ERROR, FATAL)
+* Slowest endpoints (response times)
+* Critical errors by service
+* HTTP status code distribution
+* P99 slowest requests
+* Common error patterns
+
+**Run:**
+
 ```bash
 node examples/log-analysis.js
 ```
 
-**Aprende:**
-- Procesamiento de logs a gran escala
-- Identificacion de performance bottlenecks
-- Analisis de errores y patrones
-- Metricas de percentiles (P99)
+**Learn:**
+
+* Large-scale log processing
+* Performance bottleneck identification
+* Error analysis and pattern detection
+* Percentile metrics (P99)
 
 ---
 
 ### 4. CSV ETL Pipeline
-**Archivo:** `csv-etl-pipeline.js`  
-**Tamaño del Dataset:** 2M registros de ventas  
-**Tiempo de Ejecucion:** ~1.5 segundos
 
-Pipeline ETL completo (Extract, Transform, Load):
-- **Extract:** Carga de datos de ventas
-- **Transform:** Limpieza, enriquecimiento, clasificacion
-- **Load:** 5 reportes diferentes agregados
+**File:** `csv-etl-pipeline.js`
+**Dataset Size:** 2M sales records
+**Execution Time:** ~1.5 seconds
 
-Reportes generados:
-1. Ventas por categoria
-2. Ventas por region
-3. Top 10 productos
-4. Tendencia mensual
-5. Analisis de descuentos
+Complete ETL pipeline (Extract, Transform, Load):
 
-**Ejecutar:**
+* **Extract:** Load sales data
+* **Transform:** Cleaning, enrichment, classification
+* **Load:** 5 different aggregated reports
+
+Generated reports:
+
+1. Sales by category
+2. Sales by region
+3. Top 10 products
+4. Monthly trend
+5. Discount analysis
+
+**Run:**
+
 ```bash
 node examples/csv-etl-pipeline.js
 ```
 
-**Salida:** Genera `sales-reports.json`
+**Output:** Generates `sales-reports.json`
 
-**Aprende:**
-- Pipeline ETL completo
-- Transformaciones de datos
-- Multiples agregaciones
-- Export de resultados
+**Learn:**
+
+* Complete ETL pipeline
+* Data transformations
+* Multiple aggregations
+* Exporting results
 
 ---
 
 ### 5. Data Visualization Preparation
-**Archivo:** `data-visualization-prep.js`  
-**Tamaño del Dataset:** 5M eventos web  
-**Tiempo de Ejecucion:** ~2 segundos
 
-Preparacion de datos para graficos (D3.js, Recharts, Chart.js):
-1. **Time Series** - Eventos por hora (168 puntos)
-2. **Histograma** - Distribucion de load times (10 bins)
-3. **Bar Chart** - Dispositivo x Browser (12 grupos)
-4. **Pie Chart** - Distribucion geografica (7 paises)
-5. **Heatmap** - Patron de uso hora x dia (168 celdas)
-6. **Scatter Plot** - Session vs Load time (10K puntos)
+**File:** `data-visualization-prep.js`
+**Dataset Size:** 5M web events
+**Execution Time:** ~2 seconds
 
-**Ejecutar:**
+Data preparation for charts (D3.js, Recharts, Chart.js):
+
+1. **Time Series** – Events per hour (168 points)
+2. **Histogram** – Load time distribution (10 bins)
+3. **Bar Chart** – Device × Browser (12 groups)
+4. **Pie Chart** – Geographic distribution (7 countries)
+5. **Heatmap** – Usage pattern hour × day (168 cells)
+6. **Scatter Plot** – Session vs load time (10K points)
+
+**Run:**
+
 ```bash
 node examples/data-visualization-prep.js
 ```
 
-**Aprende:**
-- Preparacion de datos para visualizacion
-- Binning y histogramas
-- Sampling para scatter plots
-- Agregaciones multi-dimensionales
-- Formato JSON para graficas
+**Learn:**
+
+* Data preparation for visualization
+* Binning and histograms
+* Sampling for scatter plots
+* Multi-dimensional aggregations
+* JSON formats for charts
 
 ---
 
 ### 6. Machine Learning Data Prep
-**Archivo:** `machine-learning-prep.js`  
-**Tamaño del Dataset:** 1M clientes  
-**Tiempo de Ejecucion:** ~1 segundo
 
-Preparacion de datos para ML:
-- Analisis exploratorio (estadisticas por feature)
-- Deteccion y remocion de outliers (IQR method)
-- Train/test split
-- Feature normalization
+**File:** `machine-learning-prep.js`
+**Dataset Size:** 1M customers
+**Execution Time:** ~1 second
 
-**Ejecutar:**
+ML data preparation:
+
+* Exploratory analysis (statistics per feature)
+* Outlier detection and removal (IQR method)
+* Train/test split
+* Feature normalization
+
+**Run:**
+
 ```bash
 node examples/machine-learning-prep.js
 ```
 
-**Aprende:**
-- EDA (Exploratory Data Analysis)
-- Deteccion de outliers
-- Preprocessing para ML
-- Feature engineering
+**Learn:**
+
+* EDA (Exploratory Data Analysis)
+* Outlier detection
+* ML preprocessing
+* Feature engineering
 
 ---
 
-### 7. Financial Analysis (Existente)
-**Archivo:** `financial-analysis.js`  
-**Tamaño del Dataset:** Variable
+### 7. Financial Analysis (Existing)
 
-Analisis financiero con diferentes operaciones.
+**File:** `financial-analysis.js`
+**Dataset Size:** Variable
 
----
-
-### 8. Real-time Dashboard (Existente)
-**Archivo:** `realtime-dashboard.js`  
-**Tamaño del Dataset:** Variable
-
-Dashboard en tiempo real con actualizaciones.
+Financial analysis with multiple operations.
 
 ---
 
-### 9. CSV Processing (Existente)
-**Archivo:** `csv-processing.js`  
-**Tamaño del Dataset:** Variable
+### 8. Real-time Dashboard (Existing)
 
-Procesamiento basico de archivos CSV.
+**File:** `realtime-dashboard.js`
+**Dataset Size:** Variable
 
----
-
-## Comparacion de Performance
-
-| Ejemplo | Dataset | JS Nativo | VeloCompute | Speedup |
-|---------|---------|-----------|-------------|---------|
-| Zero-Copy Demo | 10M | ~15s | ~2s | 7-8x |
-| Financial Dashboard | 5M | ~20s | ~1.5s | 13x |
-| Log Analysis | 10M | ~30s | ~2s | 15x |
-| CSV ETL | 2M | ~15s | ~1.5s | 10x |
-| Visualization Prep | 5M | ~25s | ~2s | 12x |
-| ML Data Prep | 1M | ~8s | ~1s | 8x |
-
-**Promedio: 10-12x mas rapido que JavaScript nativo**
+Real-time dashboard with live updates.
 
 ---
 
-## Requisitos
+### 9. CSV Processing (Existing)
 
-Todos los ejemplos requieren:
-- Node.js 18+ o 20+
-- VeloCompute instalado (`npm install velo-compute`)
-- Modulo ES6 support
+**File:** `csv-processing.js`
+**Dataset Size:** Variable
+
+Basic CSV file processing.
 
 ---
 
-## Como Ejecutar Todos los Ejemplos
+## Performance Comparison
+
+| Example             | Dataset | Native JS | VeloCompute | Speedup |
+| ------------------- | ------- | --------- | ----------- | ------- |
+| Zero-Copy Demo      | 10M     | ~15s      | ~2s         | 7–8x    |
+| Financial Dashboard | 5M      | ~20s      | ~1.5s       | 13x     |
+| Log Analysis        | 10M     | ~30s      | ~2s         | 15x     |
+| CSV ETL             | 2M      | ~15s      | ~1.5s       | 10x     |
+| Visualization Prep  | 5M      | ~25s      | ~2s         | 12x     |
+| ML Data Prep        | 1M      | ~8s       | ~1s         | 8x      |
+
+**Average: 10–12x faster than native JavaScript**
+
+---
+
+## Requirements
+
+All examples require:
+
+* Node.js 18+ or 20+
+* VeloCompute installed (`npm install velo-compute`)
+* ES6 module support
+
+---
+
+## How to Run All Examples
 
 ```bash
-# Desde la raiz del proyecto
+# From the project root
 cd examples
 
-# Ejecutar uno por uno
+# Run one by one
 node zero-copy-performance.js
 node financial-dashboard.js
 node log-analysis.js
@@ -223,7 +256,7 @@ node csv-etl-pipeline.js
 node data-visualization-prep.js
 node machine-learning-prep.js
 
-# O crear script para ejecutar todos
+# Or create a script to run all
 for file in *.js; do
   echo "Running $file..."
   node "$file"
@@ -233,44 +266,52 @@ done
 
 ---
 
-## Casos de Uso por Industria
+## Use Cases by Industry
 
-### Finanzas
-- `financial-dashboard.js` - Analisis de transacciones
-- `csv-etl-pipeline.js` - Procesamiento de ventas
+### Finance
+
+* `financial-dashboard.js` – Transaction analysis
+* `csv-etl-pipeline.js` – Sales processing
 
 ### DevOps / SRE
-- `log-analysis.js` - Analisis de logs de servidor
+
+* `log-analysis.js` – Server log analysis
 
 ### Data Science / ML
-- `machine-learning-prep.js` - Preprocessing para ML
-- `data-visualization-prep.js` - Preparacion para graficos
+
+* `machine-learning-prep.js` – ML preprocessing
+* `data-visualization-prep.js` – Chart preparation
 
 ### Business Intelligence
-- `financial-dashboard.js` - KPIs y metricas
-- `csv-etl-pipeline.js` - Reportes automatizados
+
+* `financial-dashboard.js` – KPIs and metrics
+* `csv-etl-pipeline.js` – Automated reports
 
 ### Web Analytics
-- `data-visualization-prep.js` - Analisis de eventos web
+
+* `data-visualization-prep.js` – Web event analysis
 
 ---
 
-## Personalizacion
+## Customization
 
-Cada ejemplo puede ser personalizado:
+Each example can be customized:
 
-1. **Cambiar tamano del dataset:**
+1. **Change dataset size:**
+
    ```javascript
-   const numRecords = 1_000_000; // Cambiar a tu necesidad
+   const numRecords = 1_000_000; // Adjust as needed
    ```
 
-2. **Modificar agregaciones:**
+2. **Modify aggregations:**
+
    ```javascript
    const stats = await VeloData.aggregateTypedArray(data);
-   // Usar solo las metricas que necesites
+   // Use only required metrics
    ```
 
-3. **Ajustar filtros:**
+3. **Adjust filters:**
+
    ```javascript
    const filtered = await VeloData.filter(data, {
      where: item => item.value > customThreshold
@@ -281,21 +322,24 @@ Cada ejemplo puede ser personalizado:
 
 ## Performance Tips
 
-Para obtener el maximo rendimiento:
+To get maximum performance:
 
-1. **Usa TypedArrays cuando sea posible:**
+1. **Use TypedArrays when possible:**
+
    ```javascript
    const data = new Float64Array(1_000_000);
-   await VeloData.sortTypedArray(data); // Mas rapido
+   await VeloData.sortTypedArray(data); // Faster
    ```
 
-2. **Usa filterIndices en lugar de filter:**
+2. **Use filterIndices instead of filter:**
+
    ```javascript
    const indices = await VeloData.filterIndices(data, threshold, 'gt');
-   // Mas rapido que copiar todos los valores
+   // Faster than copying values
    ```
 
-3. **Procesa en batches para datasets enormes:**
+3. **Process in batches for huge datasets:**
+
    ```javascript
    const batchSize = 1_000_000;
    for (let i = 0; i < data.length; i += batchSize) {
@@ -306,27 +350,29 @@ Para obtener el maximo rendimiento:
 
 ---
 
-## Contribuir con Mas Ejemplos
+## Contributing More Examples
 
-Si tienes un caso de uso interesante:
+If you have an interesting use case:
 
-1. Fork el repositorio
-2. Crea tu ejemplo en `examples/`
-3. Sigue el formato de los ejemplos existentes
-4. Anade documentacion en este README
-5. Crea un Pull Request
-
----
-
-## Soporte
-
-Si tienes preguntas sobre los ejemplos:
-- GitHub Issues: https://github.com/yourorg/velo-compute/issues
-- Documentation: https://velo-compute.dev
-- Twitter: @velocompute
+1. Fork the repository
+2. Create your example in `examples/`
+3. Follow the format of existing examples
+4. Add documentation to this README
+5. Create a Pull Request
 
 ---
 
-## Licencia
+## Support
 
-Todos los ejemplos estan bajo la misma licencia MIT que VeloCompute.
+If you have questions about the examples:
+
+* GitHub Issues: [https://github.com/theyoungboss06/velo-compute/issues](https://github.com/theyoungboss06/velo-compute/issues)
+* [DOCUMENTATION](../DOCUMENTATION.md)
+* Twitter: @velocompute
+
+---
+
+## License
+
+All examples are released under the same MIT license as VeloCompute.
+=

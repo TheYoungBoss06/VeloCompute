@@ -37,13 +37,13 @@ npm install velo-compute
 ### Via GitHub
 
 ```bash
-npm install https://github.com/your-username/velo-compute.git
+npm install https://github.com/TheYoungBoss06/VeloCompute.git
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/your-username/velo-compute.git
+git clone https://github.com/TheYoungBoss06/VeloCompute.git
 cd velo-compute/js
 npm install
 npm run build
@@ -590,10 +590,10 @@ VeloCompute Development Team
 
 ## Links
 
-- **Documentation:** https://velo-compute.dev
-- **GitHub:** https://github.com/your-username/velo-compute
-- **npm:** https://npmjs.com/package/velo-compute
-- **Issues:** https://github.com/your-username/velo-compute/issues
+- [Ver documentatión](/DOCUMENTATION.md)
+- **GitHub:** https://github.com/theyoungboss06/velo-compute
+
+- **Issues:** https://github.com/theyoungboss06/velo-compute/issues
 - **Changelog:** CHANGELOG.md
 
 ## Related Projects
@@ -610,7 +610,7 @@ If you use VeloCompute in your research, please cite:
   title = {VeloCompute: High-Performance Data Processing with WebAssembly},
   author = {VeloCompute Team},
   year = {2026},
-  url = {https://github.com/your-username/velo-compute}
+  url = {https://github.com/theyoungboss06/velo-compute}
 }
 ```
 
@@ -640,6 +640,5 @@ A: Full TypeScript support with complete type definitions included.
 ---
 
 **Version:** 1.0.0  
-**Last Updated:** 2026-01-11  
 **Status:** Stable
-# VeloCompute-
+# VeloCompute
