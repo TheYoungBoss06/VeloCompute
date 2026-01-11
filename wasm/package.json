@@ -1,0 +1,15 @@
+{
+  "name": "velo_compute",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "velo_compute_bg.wasm",
+    "velo_compute.js",
+    "velo_compute.d.ts"
+  ],
+  "main": "velo_compute.js",
+  "types": "velo_compute.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
